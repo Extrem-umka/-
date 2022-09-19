@@ -129,9 +129,35 @@ student_2.rate_lec(lecturer_1 , 'Git', 9)
 student_2.rate_lec(lecturer_1 , 'Git', 8)
 student_2.rate_lec(lecturer_1 , 'Git', 7)
 
+students_list = [student_1, student_2]
+lecturers_list = [lecturer_1]
+
+#средняя оценка всех студентов за ДЗ по курсу
+def average_grade_course_student(students_list, course):
+    avg_grade = []
+    for student in students_list:
+        if course in student.grades:
+            avg_grade += student.grades[course]
+    if avg_grade:
+        return round(sum(avg_grade) / len(avg_grade), 1)
+
+#средняя оценка лекторов за ДЗ по курсу
+def average_grade_course_lecturer(lecturers_list, course):
+    avg_grade = []
+    for lecturer in lecturers_list:
+        if course in lecturer.grades:
+            avg_grade += lecturer.grades[course]
+    if avg_grade:
+        return round(sum(avg_grade) / len(avg_grade), 1)
+
 
 print (f'Студенты: \n{student_1} \n{student_2}')
 print ()
 print (f'Лекторы: \n{lecturer_1}')
 print ()
 print (f'Проверяющие: \n{reviewer_1}')
+print ()
+print(average_grade_course_lecturer(lecturers_list, 'Python'))
+print(average_grade_course_student(students_list, 'Python'))
+print(average_grade_course_lecturer(lecturers_list, 'Git'))
+print(average_grade_course_student(students_list, 'Git'))
